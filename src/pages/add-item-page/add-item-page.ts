@@ -13,8 +13,8 @@ import { NavController, ViewController } from 'ionic-angular';
 })
 export class AddItemPage {
 
-  title: string;
-  desc: string;
+  title: string = '';
+  desc: string = '';
 
   constructor(public navCtrl: NavController, public view: ViewController) {
 
@@ -24,12 +24,13 @@ export class AddItemPage {
   }
 
   saveItem() {
-
+    console.log(this.title);
     if (this.title !== '' && this.desc !== '') {
 
       let newitem = {
         title: this.title,
-        desc: this.desc
+        desc: this.desc,
+        done: false
       };
 
       this.view.dismiss(newitem);

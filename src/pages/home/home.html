@@ -15,10 +15,28 @@
 
 <ion-content padding>
     <ion-list>
-        <ion-item *ngFor="let item of items">
-            <h2>
-                {{item.title}}
-            </h2>
-        </ion-item>
+        <ion-item-sliding *ngFor="let item of items; let i = index" #slidingItem>
+            <ion-item (click)="viewItem(item)">
+                <ion-icon *ngIf="item.done" color="primary" name="checkmark-circle" item-right>
+                </ion-icon>
+                <h2>
+                    {{item.title}}
+                </h2>
+            </ion-item>
+
+            <ion-item-options side="left">
+                <button ion-button color="primary" (click)="setItemDone(i,slidingItem)">
+                    <ion-icon name="checkmark">
+                    </ion-icon>
+                    Feito
+                </button>
+            </ion-item-options>
+            <ion-item-options side="right">
+                <button ion-button color="danger" (click)="deleteItem(i)">
+                    <ion-icon name="trash"></ion-icon>
+                    Deletar
+                </button>
+            </ion-item-options>
+        </ion-item-sliding>
     </ion-list>
 </ion-content>
